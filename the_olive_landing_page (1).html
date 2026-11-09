@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>QUENZON LINKS — Rwanda Kitchen Meal Subscriptions</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="fav.png" type="image/x-icon">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            goldHover: '#B38E47',
+                            sand: '#EEDC82',
+                            lightBg: '#F9F8F3',
+                            cardBg: '#FFFFFF',
+                            darkBg: '#121714',
+                            darkCard: '#1A201C',
+                            accentText: '#8A857C',
+                            heading: '#161A17'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        script: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-border-btn {
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            transition: all 0.3s ease;
+        }
+        .gold-border-btn:hover {
+            border-color: #C5A059;
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121415;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-brand-lightBg antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black/60 backdrop-blur-md border-b border-white/10" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 text-white group">
+                <svg class="w-7 h-7 text-brand-gold transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0.3"/>
+                    <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 9c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    <path d="M15 9l-3 3-1.5-1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="flex flex-col">
+                    <span class="font-serif tracking-widest text-lg font-semibold uppercase leading-tight text-white">Quenzon Links</span>
+                    <span class="text-[9px] tracking-[0.25em] text-brand-gold uppercase">Rwanda Kitchen</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wider text-gray-200">
+                <a href="#hero" class="hover:text-brand-gold transition-colors duration-200">Home</a>
+                <a href="#about-subscription" class="hover:text-brand-gold transition-colors duration-200">How It Works</a>
+                <a href="#weekly-menu" class="hover:text-brand-gold transition-colors duration-200">Weekly Meals</a>
+                <a href="#plans" class="hover:text-brand-gold transition-colors duration-200">Subscription Plans</a>
+                <a href="#footer" class="hover:text-brand-gold transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden sm:flex items-center">
+                <a href="#subscribe" class="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase border border-white/30 text-white rounded hover:bg-white hover:text-black transition-all duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-darkBg border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#hero" class="block text-gray-300 hover:text-brand-gold py-1">Home</a>
+            <a href="#about-subscription" class="block text-gray-300 hover:text-brand-gold py-1">How It Works</a>
+            <a href="#weekly-menu" class="block text-gray-300 hover:text-brand-gold py-1">Weekly Meals</a>
+            <a href="#plans" class="block text-gray-300 hover:text-brand-gold py-1">Subscription Plans</a>
+            <a href="#footer" class="block text-gray-300 hover:text-brand-gold py-1">Contact</a>
+            <a href="#subscribe" class="inline-block mt-4 w-full text-center px-5 py-2.5 text-xs font-semibold tracking-wider uppercase border border-brand-gold text-brand-gold rounded">Start Subscription</a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center bg-brand-darkBg text-white pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity bg-cover bg-center scale-105" style="background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2070&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-t from-brand-darkBg via-transparent to-black/70"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-left w-full my-auto py-24">
+            <p class="text-xs sm:text-sm font-semibold tracking-[0.3em] uppercase text-gray-300 mb-4">
+                MEAL SUBSCRIPTIONS &nbsp;·&nbsp; KIGALI DIRECT DELIVERY
+            </p>
+            <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-white mb-6 leading-[1.1]">
+                A Place for <br/>
+                <span class="italic font-light">Better Moments</span>
+            </h1>
+            <p class="text-gray-300 text-base sm:text-lg max-w-xl mb-10 leading-relaxed font-light">
+                Chef-curated weekly and monthly meal subscription plans delivered fresh to your door across Kigali. Effortless nutrition, balanced flavors, and local Rwandan staples.
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="#plans" class="inline-flex items-center gap-3 px-7 py-3.5 bg-[#C5A059] hover:bg-brand-goldHover text-gray-950 font-medium text-sm rounded shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                    Explore Plans
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="#subscribe" class="inline-flex items-center gap-3 px-7 py-3.5 border border-white/30 text-white hover:bg-white hover:text-black font-medium text-sm rounded transition-all duration-300">
+                    Subscribe Now
+                </a>
+            </div>
+        </div>
+
+        <a href="#about-subscription" class="absolute bottom-8 right-8 z-10 flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 hover:text-brand-gold transition-colors duration-200">
+            <span>Scroll Down</span>
+            <div class="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center">
+                <i class="fa-solid fa-arrow-down text-[10px]"></i>
+            </div>
+        </a>
+    </section>
+
+    <!-- 2. SUBSCRIPTION STORY / HOW IT WORKS -->
+    <section id="about-subscription" class="py-24 bg-brand-lightBg text-brand-heading">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <div class="lg:col-span-6 relative">
+                    <div class="relative z-10 rounded-lg overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1000&auto=format&fit=crop" alt="Subscription Meal Prep" class="w-full h-[420px] object-cover">
+                    </div>
+                    <div class="absolute -bottom-8 -right-4 sm:right-4 z-20 w-48 sm:w-56 h-48 rounded-lg overflow-hidden border-4 border-brand-lightBg shadow-xl hidden sm:block">
+                        <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=600&auto=format&fit=crop" alt="Kigali Delivery Box" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -top-6 left-6 z-20 font-script text-3xl sm:text-4xl text-gray-800 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-gray-100 transform -rotate-3">
+                        Fresh · Local · Scheduled
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 space-y-6 lg:pl-6">
+                    <span class="text-xs font-bold tracking-[0.25em] text-brand-accentText uppercase">How It Works</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-normal text-gray-900 leading-tight">
+                        A Culinary Journey Rooted in Convenience
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed font-light text-base">
+                        Quenzon Links Rwanda Kitchen is Kigali's premier meal subscription platform. Choose your plan, select your weekly menu of authentic Rwandan fusion meals, and enjoy daily or scheduled doorstep delivery with zero cooking or hassle.
+                    </p>
+                    
+                    <div class="pt-2">
+                        <a href="#plans" class="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-brand-gold transition-colors duration-200 underline underline-offset-4 decoration-brand-gold/60">
+                            Learn More About Subscriptions <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-gray-200/80 mt-8">
+                        <div class="space-y-2">
+                            <div class="w-10 h-10 rounded-full bg-amber-100/60 flex items-center justify-center text-brand-gold text-lg">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <h4 class="font-serif text-base font-semibold text-gray-900">Custom Plans</h4>
+                            <p class="text-xs text-gray-500 leading-normal">Flexible weekly or monthly subscription schedules.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="w-10 h-10 rounded-full bg-amber-100/60 flex items-center justify-center text-brand-gold text-lg">
+                                <i class="fa-solid fa-[#C5A059] fa-box"></i>
+                            </div>
+                            <h4 class="font-serif text-base font-semibold text-gray-900">Freshly Prepped</h4>
+                            <p class="text-xs text-gray-500 leading-normal">Portioned, ready-to-eat meals using local ingredients.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="w-10 h-10 rounded-full bg-amber-100/60 flex items-center justify-center text-brand-gold text-lg">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <h4 class="font-serif text-base font-semibold text-gray-900">Kigali Delivery</h4>
+                            <p class="text-xs text-gray-500 leading-normal">Reliable delivery directly to your home or office.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. WEEKLY MEAL HIGHLIGHTS -->
+    <section id="weekly-menu" class="py-24 bg-white text-gray-900 border-t border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-bold tracking-[0.25em] text-brand-accentText uppercase">Meal Highlights</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-normal text-gray-900 mt-2">Signature Subscription Meals</h2>
+                    <p class="text-gray-500 text-sm mt-3 max-w-md">
+                        Sample dishes included in our rotating subscription plans, crafted for health, energy, and rich Rwandan culinary flavor.
+                    </p>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <a href="#plans" class="inline-block px-5 py-2.5 text-xs font-semibold tracking-wider uppercase border border-gray-300 rounded hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300">
+                        View Subscription Plans →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-lightBg rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 group">
+                    <div class="h-60 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=800&auto=format&fit=crop" alt="Lake Kivu Tilapia Prep" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col justify-between h-[180px]">
+                        <div>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <h3 class="font-serif text-xl font-semibold text-gray-900">Lake Kivu Tilapia Bowl</h3>
+                                <div class="text-right">
+                                    <span class="block text-xs font-semibold text-brand-gold font-sans">Included in Plan</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                                Grilled tilapia fillet, traditional spiced Isombe greens, steamed sweet potatoes, and avocado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-lightBg rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 group">
+                    <div class="h-60 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" alt="Flame-Grilled Beef Skewers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col justify-between h-[180px]">
+                        <div>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <h3 class="font-serif text-xl font-semibold text-gray-900">Kigali Brochette Platter</h3>
+                                <div class="text-right">
+                                    <span class="block text-xs font-semibold text-brand-gold font-sans">Included in Plan</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                                Tender beef brochettes with roasted plantains (Mizuzu), house chili glaze, and fresh garden salad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-lightBg rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 group">
+                    <div class="h-60 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop" alt="Vegetarian Bean & Grain Bowl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col justify-between h-[180px]">
+                        <div>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <h3 class="font-serif text-xl font-semibold text-gray-900">Akagera Superfood Bowl</h3>
+                                <div class="text-right">
+                                    <span class="block text-xs font-semibold text-brand-gold font-sans">Included in Plan</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                                Organic Rwandan yellow beans, brown rice, roasted pumpkin, and tangy peanut-tahini dressing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SUBSCRIPTION PLANS SECTION -->
+    <section id="plans" class="py-24 bg-brand-lightBg text-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-[0.25em] text-brand-accentText uppercase">Choose Your Plan</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-gray-900 mt-2">Subscription Tier Pricing</h2>
+                <p class="text-gray-500 text-sm mt-3">
+                    Flexible weekly and monthly plans designed for professionals, families, and health-conscious individuals in Kigali.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Weekly Lite -->
+                <div class="bg-white rounded-lg p-8 border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-brand-gold uppercase">Weekly Lite</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mt-1">5 Meals / Week</h3>
+                        <p class="text-xs text-gray-500 mt-2">Perfect for weekday office lunches.</p>
+                        
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-gray-900">35,000 RWF</span>
+                            <span class="text-xs text-gray-400 block mt-1">Approx. $27.00 USD / week</span>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-gray-600 border-t border-gray-100 pt-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> 5 Lunch Meals (Mon - Fri)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Free Kigali Doorstep Delivery</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Eco-friendly thermal packaging</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Pause or cancel anytime</li>
+                        </ul>
+                    </div>
+                    <a href="#subscribe" onclick="setPlan('Weekly Lite (5 Meals)')" class="mt-8 block text-center py-3 px-4 border border-gray-900 text-gray-900 font-semibold text-xs tracking-wider uppercase rounded hover:bg-gray-900 hover:text-white transition-colors">
+                        Select Plan
+                    </a>
+                </div>
+
+                <!-- Executive Monthly (Featured) -->
+                <div class="bg-brand-darkBg text-white rounded-lg p-8 border-2 border-brand-gold shadow-xl flex flex-col justify-between relative transform lg:-translate-y-2">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-gold text-gray-950 font-bold text-[10px] tracking-widest uppercase px-3 py-1 rounded-full">
+                        Most Popular
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-brand-gold uppercase">Executive Monthly</span>
+                        <h3 class="font-serif text-2xl font-bold text-white mt-1">20 Meals / Month</h3>
+                        <p class="text-xs text-gray-400 mt-2">Complete month-long lunch coverage.</p>
+                        
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-white">130,000 RWF</span>
+                            <span class="text-xs text-gray-400 block mt-1">Approx. $100.00 USD / month</span>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-gray-300 border-t border-white/10 pt-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> 20 Chef-Curated Meals</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Priority Morning/Noon Delivery Slot</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Customizable Dietary Preferences</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Free Delivery Across All Kigali Zones</li>
+                        </ul>
+                    </div>
+                    <a href="#subscribe" onclick="setPlan('Executive Monthly (20 Meals)')" class="mt-8 block text-center py-3 px-4 bg-[#C5A059] text-gray-950 font-bold text-xs tracking-wider uppercase rounded hover:bg-brand-goldHover transition-colors">
+                        Subscribe Now
+                    </a>
+                </div>
+
+                <!-- Family Full Flex -->
+                <div class="bg-white rounded-lg p-8 border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-brand-gold uppercase">Family & Office Flex</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mt-1">40 Meals / Month</h3>
+                        <p class="text-xs text-gray-500 mt-2">Shared plans for couples or small teams.</p>
+                        
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-gray-900">250,000 RWF</span>
+                            <span class="text-xs text-gray-400 block mt-1">Approx. $192.00 USD / month</span>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-gray-600 border-t border-gray-100 pt-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> 40 Portion-Controlled Meals</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Multi-Address Kigali Delivery</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> VIP Whatsapp Concierge Support</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Weekly Menu Customization</li>
+                        </ul>
+                    </div>
+                    <a href="#subscribe" onclick="setPlan('Family & Office Flex (40 Meals)')" class="mt-8 block text-center py-3 px-4 border border-gray-900 text-gray-900 font-semibold text-xs tracking-wider uppercase rounded hover:bg-gray-900 hover:text-white transition-colors">
+                        Select Plan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SUBSCRIPTION REGISTRATION SECTION -->
+    <section id="subscribe" class="py-24 bg-brand-darkBg text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-25" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1600&auto=format&fit=crop');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold tracking-[0.25em] text-brand-gold uppercase">Get Started</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-normal leading-tight text-white">Start Your Meal Subscription</h2>
+                    <p class="text-gray-400 text-sm max-w-md font-light">
+                        Select your plan, delivery neighborhood in Kigali, and preferred start date. We process direct orders quickly via WhatsApp and MTN Mobile Money.
+                    </p>
+                    <div class="pt-4">
+                        <button onclick="document.getElementById('subscription-form').dispatchEvent(new Event('submit'));" class="px-7 py-3.5 bg-[#C5A059] hover:bg-brand-goldHover text-gray-950 font-medium text-xs tracking-wider uppercase rounded transition-all duration-300">
+                            Confirm Subscription →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Subscription Form -->
+                <div class="lg:col-span-6">
+                    <form id="subscription-form" onsubmit="event.preventDefault(); handleSubscriptionSubmit();" class="bg-[#181E1A]/90 border border-white/10 backdrop-blur-md rounded-lg p-6 sm:p-8 space-y-4 shadow-2xl">
+                        
+                        <!-- Plan Selection -->
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Subscription Plan</label>
+                            <div class="relative">
+                                <select id="plan-select" onchange="updateTotalPrice()" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold appearance-none transition-colors">
+                                    <option value="Weekly Lite (5 Meals)" data-price="35000">Weekly Lite — 35,000 RWF / week</option>
+                                    <option value="Executive Monthly (20 Meals)" data-price="130000" selected>Executive Monthly — 130,000 RWF / month</option>
+                                    <option value="Family & Office Flex (40 Meals)" data-price="250000">Family & Office Flex — 250,000 RWF / month</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-4 top-4 text-gray-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Kigali Neighborhood with Specific Delivery Pricing -->
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Delivery Neighborhood (Kigali Rate)</label>
+                            <div class="relative">
+                                <select id="location-select" onchange="updateTotalPrice()" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold appearance-none transition-colors">
+                                    <option value="Kimihurura" data-fee="1200" selected>Kimihurura — 1,200 RWF delivery fee</option>
+                                    <option value="Kiyovu" data-fee="1200">Kiyovu — 1,200 RWF delivery fee</option>
+                                    <option value="Kacyiru" data-fee="1200">Kacyiru — 1,200 RWF delivery fee</option>
+                                    <option value="Nyarutarama" data-fee="1500">Nyarutarama — 1,500 RWF delivery fee</option>
+                                    <option value="Gacuriro" data-fee="1500">Gacuriro — 1,500 RWF delivery fee</option>
+                                    <option value="Remera" data-fee="1500">Remera — 1,500 RWF delivery fee</option>
+                                    <option value="Kagugu" data-fee="1800">Kagugu — 1,800 RWF delivery fee</option>
+                                    <option value="Kicukiro" data-fee="2000">Kicukiro — 2,000 RWF delivery fee</option>
+                                    <option value="Kanombe" data-fee="2500">Kanombe — 2,500 RWF delivery fee</option>
+                                </select>
+                                <i class="fa-solid fa-location-dot absolute right-4 top-3.5 text-gray-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Start Date -->
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Preferred Start Date</label>
+                            <div class="relative">
+                                <input type="date" id="start-date" value="2026-11-16" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                                <i class="fa-regular fa-calendar absolute right-4 top-3.5 text-gray-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Full Name & Phone -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <input type="text" id="cust-name" placeholder="Full Name" required class="bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                            <input type="tel" id="cust-phone" placeholder="Phone (WhatsApp)" required class="bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                        </div>
+
+                        <!-- Estimated Total Breakdown -->
+                        <div class="bg-[#1D2520] border border-white/5 rounded p-3 flex justify-between items-center text-xs text-gray-300 font-sans">
+                            <span>Total (Plan + Delivery):</span>
+                            <span id="calculated-total" class="font-serif text-base font-bold text-brand-gold">131,200 RWF</span>
+                        </div>
+
+                        <div id="subscription-message" class="hidden text-xs text-brand-gold pt-2">
+                            ✓ Directing to WhatsApp for instant plan confirmation & payment instructions...
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TESTIMONIALS SECTION -->
+    <section class="py-24 bg-brand-lightBg text-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-left mb-12">
+                <span class="text-xs font-bold tracking-[0.25em] text-brand-accentText uppercase">Subscriber Reviews</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-gray-900 mt-2">Loved by Subscribers</h2>
+            </div>
+
+            <!-- Carousel Wrapper -->
+            <div class="relative">
+                <div id="testimonial-slider" class="grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-300">
+                    
+                    <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Subscriber Sarah K." class="w-12 h-12 rounded-full object-cover">
+                            <p class="text-xs text-gray-600 leading-relaxed italic">
+                                "The Executive Monthly plan has solved lunch for my company in Kimihurura. Timely delivery and always fresh!"
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">— Sarah K. (Subscriber)</h4>
+                            <div class="text-brand-gold text-xs mt-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Subscriber Jean-Paul M." class="w-12 h-12 rounded-full object-cover">
+                            <p class="text-xs text-gray-600 leading-relaxed italic">
+                                "Delicious Rwandan fusion dishes without needing to cook. High quality portions and reliable service."
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">— Jean-Paul M. (Subscriber)</h4>
+                            <div class="text-brand-gold text-xs mt-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" alt="Subscriber Emily R." class="w-12 h-12 rounded-full object-cover">
+                            <p class="text-xs text-gray-600 leading-relaxed italic">
+                                "Subscribing to Quenzon Links saved me so much time every week. The tilapia and isombe bowls are fantastic!"
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">— Emily R. (Subscriber)</h4>
+                            <div class="text-brand-gold text-xs mt-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center justify-between mt-8">
+                    <button id="prev-btn" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 transition-colors">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <button id="next-btn" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 transition-colors">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER SECTION -->
+    <footer id="footer" class="bg-brand-darkBg text-gray-400 text-xs border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                
+                <div class="md:col-span-3 space-y-4">
+                    <div class="flex items-center gap-2 text-white">
+                        <svg class="w-6 h-6 text-brand-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0.3"/>
+                            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 9c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                        </svg>
+                        <span class="font-serif tracking-widest text-base font-semibold uppercase text-white">Quenzon Links</span>
+                    </div>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">
+                        Rwanda Kitchen Meal Subscription Platform. Delivering healthy, chef-prepared meals across Kigali.
+                    </p>
+                </div>
+
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-white font-semibold tracking-wider text-xs uppercase">Weekly Menu Newsletter</h4>
+                    <p class="text-gray-500 text-[11px]">Get the upcoming weekly subscription menu delivered to your inbox every Sunday.</p>
+                    <form onsubmit="event.preventDefault(); handleNewsletter();" class="flex gap-2 pt-1">
+                        <input type="email" required placeholder="Your email address" class="bg-[#1F2722] border border-white/10 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-gold w-full">
+                        <button type="submit" class="px-4 py-2 bg-[#C5A059] text-gray-950 font-semibold text-xs rounded hover:bg-brand-goldHover transition-colors">Subscribe</button>
+                    </form>
+                    <p id="newsletter-msg" class="hidden text-[10px] text-brand-gold">Subscribed to weekly menu updates!</p>
+                </div>
+
+                <div class="md:col-span-2 space-y-3">
+                    <h4 class="text-white font-semibold tracking-wider text-xs uppercase">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#hero" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about-subscription" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#weekly-menu" class="hover:text-white transition-colors">Weekly Meals</a></li>
+                        <li><a href="#plans" class="hover:text-white transition-colors">Subscription Plans</a></li>
+                        <li><a href="#subscribe" class="hover:text-white transition-colors">Subscribe Now</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 space-y-4">
+                    <div>
+                        <h4 class="text-white font-semibold tracking-wider text-xs uppercase mb-2">Follow Us</h4>
+                        <div class="flex space-x-3 text-base text-gray-400">
+                            <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://wa.me/+250781070676" target="_blank" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="space-y-1 text-gray-400">
+                        <p><i class="fa-solid fa-truck-fast text-brand-gold mr-2"></i>Kigali Doorstep Delivery</p>
+                        <p><i class="fa-solid fa-clock text-brand-gold mr-2"></i>Delivery Window: 11:30 AM – 2:00 PM</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500">
+                <p>© 2026 Quenzon Links Rwanda Kitchen. Meal Subscription Platform.</p>
+                <p class="mt-2 sm:mt-0 font-medium">Authentic Flavors · Direct Delivery</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/90', 'py-1');
+                navbar.classList.remove('bg-black/60');
+            } else {
+                navbar.classList.remove('bg-black/90', 'py-1');
+                navbar.classList.add('bg-black/60');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Calculate dynamic total price
+        function updateTotalPrice() {
+            const planSelect = document.getElementById('plan-select');
+            const locSelect = document.getElementById('location-select');
+            
+            const selectedPlanOption = planSelect.options[planSelect.selectedIndex];
+            const selectedLocOption = locSelect.options[locSelect.selectedIndex];
+
+            const planPrice = parseInt(selectedPlanOption.getAttribute('data-price') || 0);
+            const deliveryFee = parseInt(selectedLocOption.getAttribute('data-fee') || 0);
+            const totalPrice = planPrice + deliveryFee;
+
+            document.getElementById('calculated-total').innerText = totalPrice.toLocaleString() + ' RWF';
+        }
+
+        // Helper to select plan from cards
+        function setPlan(planName) {
+            const planSelect = document.getElementById('plan-select');
+            for (let option of planSelect.options) {
+                if (option.value.includes(planName) || option.text.includes(planName)) {
+                    option.selected = true;
+                    break;
+                }
+            }
+            updateTotalPrice();
+        }
+
+        // Initialize total calculation on load
+        window.addEventListener('DOMContentLoaded', updateTotalPrice);
+
+        // Subscription Form Submit - WhatsApp Workflow
+        function handleSubscriptionSubmit() {
+            const planSelect = document.getElementById('plan-select');
+            const locSelect = document.getElementById('location-select');
+            const plan = planSelect.value;
+            const location = locSelect.value;
+            const deliveryFee = locSelect.options[locSelect.selectedIndex].getAttribute('data-fee');
+            const totalText = document.getElementById('calculated-total').innerText;
+            const startDate = document.getElementById('start-date').value;
+            const name = document.getElementById('cust-name').value || 'Customer';
+            const phone = document.getElementById('cust-phone').value || '';
+
+            const msg = document.getElementById('subscription-message');
+            msg.classList.remove('hidden');
+
+            const text = encodeURIComponent(`Hello Quenzon Links Rwanda Kitchen! I would like to subscribe to a meal plan:\n\n- Name: ${name}\n- Phone: ${phone}\n- Plan: ${plan}\n- Location: ${location} (Delivery: ${parseInt(deliveryFee).toLocaleString()} RWF)\n- Preferred Start Date: ${startDate}\n- Total Estimated: ${totalText}`);
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/?text=${text}`, '_blank');
+                msg.classList.add('hidden');
+            }, 1200);
+        }
+
+        // Newsletter Form Feedback
+        function handleNewsletter() {
+            const msg = document.getElementById('newsletter-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Testimonials Carousel Navigation
+        const slider = document.getElementById('testimonial-slider');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        nextBtn.addEventListener('click', () => {
+            slider.classList.add('opacity-50');
+            setTimeout(() => {
+                slider.appendChild(slider.firstElementChild);
+                slider.classList.remove('opacity-50');
+            }, 200);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slider.classList.add('opacity-50');
+            setTimeout(() => {
+                slider.insertBefore(slider.lastElementChild, slider.firstElementChild);
+                slider.classList.remove('opacity-50');
+            }, 200);
+        });
+    </script>
+</body>
+</html>
