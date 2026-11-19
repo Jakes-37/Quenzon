@@ -386,6 +386,7 @@
             </div>
         </div>
     </section>
+    
 
     <!-- 5. SUBSCRIPTION REGISTRATION SECTION -->
     <section id="subscribe" class="py-24 bg-brand-darkBg text-white relative overflow-hidden">
@@ -474,6 +475,159 @@
             </div>
         </div>
     </section>
+<!-- ... existing code ... -->
+                    
+                </div>
+
+                <!-- Right Subscription Form -->
+                <div class="lg:col-span-6 mt-6 p-6">
+                    <form id="subscription-form" onsubmit="event.preventDefault(); handleSubscriptionSubmit();" class="bg-[#181E1A]/90 border border-white/10 backdrop-blur-md rounded-lg p-6 sm:p-8 space-y-4 shadow-2xl">
+                        
+                        <!-- Plan Selection -->
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Subscription Plan</label>
+                            <div class="relative">
+                                <select id="plan-select" onchange="updateTotalPrice()" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold appearance-none transition-colors">
+                                    <option value="Weekly Lite (5 Meals)" data-price="35000">Weekly Lite — 35,000 RWF / week</option>
+                                    <option value="Executive Monthly (20 Meals)" data-price="130000" selected>Executive Monthly — 130,000 RWF / month</option>
+                                    <option value="Family & Office Flex (40 Meals)" data-price="250000">Family & Office Flex — 250,000 RWF / month</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-4 top-4 text-gray-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- STEP: CHOOSE VEGETARIAN OR NON-VEGETARIAN MEAL MENUS BEFORE PAYMENT -->
+                        <div class="space-y-2.5 pt-1">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-brand-gold flex items-center justify-between">
+                                <span>Step 2: Select Kitchen Menu Track</span>
+                                <span id="selected-diet-badge" class="text-[10px] border border-brand-gold/40 text-brand-gold px-2 py-0.5 rounded">Non-Vegetarian</span>
+                            </label>
+                            <input type="hidden" id="selected-diet" value="Non-Vegetarian">
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Vegetarian Option -->
+                                <div id="btn-veg" onclick="selectDiet('Vegetarian')" class="cursor-pointer border border-white/10 bg-[#222924] p-3.5 rounded transition-all hover:border-brand-gold/60">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs font-serif font-semibold text-white tracking-wide">Vegetarian Kitchen</span>
+                                        <span class="text-[9px] uppercase tracking-widest text-gray-400">Plant-Based</span>
+                                    </div>
+                                    <p class="text-[11px] text-gray-400 leading-snug">Musanze yellow beans, pounded cassava leaves (Isombe), roasted sweet potato & garden greens.</p>
+                                </div>
+
+                                <!-- Non-Vegetarian Option -->
+                                <div id="btn-nonveg" onclick="selectDiet('Non-Vegetarian')" class="cursor-pointer border border-brand-gold bg-brand-gold/10 p-3.5 rounded transition-all hover:border-brand-gold/60">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs font-serif font-semibold text-white tracking-wide">Non-Vegetarian Kitchen</span>
+                                        <span class="text-[9px] uppercase tracking-widest text-brand-gold">Meat & Fish</span>
+                                    </div>
+                                    <p class="text-[11px] text-gray-400 leading-snug">Gisenyi Lake Kivu tilapia, charcoal-seared beef brochettes, farm chicken & traditional sides.</p>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Weekly Menu Preview & Dish Selection -->
+                            <div class="bg-[#222924] border border-white/10 rounded p-3.5 space-y-2.5">
+                                <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                                    <span id="diet-menu-title" class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">
+                                        Non-Vegetarian Rotation — Customize Weekly Dishes
+                                    </span>
+                                    <span class="text-[10px] text-gray-400">Chef's Selection</span>
+                                </div>
+                                <div id="diet-menu-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-gray-300">
+                                    <label class="flex items-start gap-2.5 bg-[#181E1A] p-2.5 rounded border border-white/5 cursor-pointer hover:border-brand-gold/40 transition-colors">
+                                        <input type="checkbox" name="menu_item" value="Gisenyi Grilled Tilapia, Isombe & Ibijumba" checked class="accent-[#C5A059] rounded mt-0.5">
+                                        <span>Gisenyi Grilled Tilapia, Isombe & Ibijumba</span>
+                                    </label>
+                                    <label class="flex items-start gap-2.5 bg-[#181E1A] p-2.5 rounded border border-white/5 cursor-pointer hover:border-brand-gold/40 transition-colors">
+                                        <input type="checkbox" name="menu_item" value="Charcoal Beef Brochettes, Mizuzu & Kachumbari" checked class="accent-[#C5A059] rounded mt-0.5">
+                                        <span>Charcoal Beef Brochettes, Mizuzu & Kachumbari</span>
+                                    </label>
+                                    <label class="flex items-start gap-2.5 bg-[#181E1A] p-2.5 rounded border border-white/5 cursor-pointer hover:border-brand-gold/40 transition-colors">
+                                        <input type="checkbox" name="menu_item" value="Akabenz-Style Spiced Pork & Roasted Potatoes" checked class="accent-[#C5A059] rounded mt-0.5">
+                                        <span>Akabenz-Style Spiced Pork & Roasted Potatoes</span>
+                                    </label>
+                                    <label class="flex items-start gap-2.5 bg-[#181E1A] p-2.5 rounded border border-white/5 cursor-pointer hover:border-brand-gold/40 transition-colors">
+                                        <input type="checkbox" name="menu_item" value="Slow-Braised Rwandan Beef Stew & Spiced Pilau" checked class="accent-[#C5A059] rounded mt-0.5">
+                                        <span>Slow-Braised Rwandan Beef Stew & Spiced Pilau</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kigali Neighborhood with Specific Delivery Pricing -->
+<!-- ... existing code ... -->
+                        <!-- Estimated Total Breakdown -->
+                        <div class="bg-[#1D2520] border border-white/5 rounded p-3 flex justify-between items-center text-xs text-gray-300 font-sans">
+                            <span>Total (Plan + Delivery):</span>
+                            <span id="calculated-total" class="font-serif text-base font-bold text-brand-gold">131,200 RWF</span>
+                        </div>
+
+                        <!-- Continue to Payment Submit Button -->
+                        <button type="submit" class="w-full py-3.5 px-6 bg-[#C5A059] hover:bg-brand-goldHover text-gray-950 font-bold text-xs tracking-wider uppercase rounded shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Continue to Payment</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                        <div id="subscription-message" class="hidden text-xs text-brand-gold pt-1 text-center">
+                            Preparing your checkout summary...
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYMENT SUMMARY & MTN MOMO MODAL -->
+    <div id="payment-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#181E1A] border border-brand-gold/40 rounded-lg max-w-md w-full p-6 sm:p-8 text-white shadow-2xl space-y-5 relative">
+            <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div>
+                <span class="text-[10px] font-bold tracking-[0.25em] text-brand-gold uppercase">Final Step · Payment</span>
+                <h3 class="font-serif text-2xl font-normal text-white mt-1">Subscription Checkout</h3>
+            </div>
+
+            <div class="bg-[#222924] border border-white/10 rounded p-4 space-y-2.5 text-xs">
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Subscriber:</span>
+                    <span id="modal-name" class="font-semibold text-white">—</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Plan:</span>
+                    <span id="modal-plan" class="font-semibold text-white">—</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Dietary Menu:</span>
+                    <span id="modal-diet" class="font-bold text-brand-gold">—</span>
+                </div>
+                <div class="border-t border-white/10 pt-2">
+                    <span class="text-gray-400 block mb-1">Selected Weekly Dishes:</span>
+                    <span id="modal-dishes" class="text-[11px] text-gray-200 leading-relaxed block">—</span>
+                </div>
+                <div class="flex justify-between border-t border-white/10 pt-2">
+                    <span class="text-gray-400">Delivery Zone:</span>
+                    <span id="modal-location" class="text-white">—</span>
+                </div>
+                <div class="flex justify-between border-t border-white/10 pt-2 text-sm">
+                    <span class="font-semibold text-gray-300">Total Amount Due:</span>
+                    <span id="modal-total" class="font-serif font-bold text-brand-gold text-base">—</span>
+                </div>
+            </div>
+
+            <div class="bg-[#121714] border border-brand-gold/30 rounded p-3.5 text-xs space-y-1">
+                <p class="font-bold text-brand-gold uppercase tracking-wider text-[10px]">MTN Mobile Money Payment</p>
+                <p class="text-gray-300">Send total amount via MTN MoMo to:</p>
+                <p class="text-white font-semibold">Recipient: <span class="text-brand-gold">MIZERO Chrispin</span> (+250 781 070 676)</p>
+            </div>
+
+            <button onclick="confirmWhatsAppPayment()" class="w-full py-3.5 px-4 bg-[#C5A059] hover:bg-brand-goldHover text-gray-950 font-bold text-xs tracking-wider uppercase rounded transition-colors flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Confirm Order & Send Receipt via WhatsApp</span>
+            </button>
+        </div>
+    </div>
 
     <!-- 6. TESTIMONIALS SECTION -->
     <section class="py-24 bg-brand-lightBg text-gray-900">
@@ -489,7 +643,6 @@
                     
                     <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
                         <div class="flex items-start gap-4">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Subscriber Sarah K." class="w-12 h-12 rounded-full object-cover">
                             <p class="text-xs text-gray-600 leading-relaxed italic">
                                 "The Executive Monthly plan has solved lunch for my company in Kimihurura. Timely delivery and always fresh!"
                             </p>
@@ -504,7 +657,6 @@
 
                     <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
                         <div class="flex items-start gap-4">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Subscriber Jean-Paul M." class="w-12 h-12 rounded-full object-cover">
                             <p class="text-xs text-gray-600 leading-relaxed italic">
                                 "Delicious Rwandan fusion dishes without needing to cook. High quality portions and reliable service."
                             </p>
@@ -519,7 +671,6 @@
 
                     <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
                         <div class="flex items-start gap-4">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" alt="Subscriber Emily R." class="w-12 h-12 rounded-full object-cover">
                             <p class="text-xs text-gray-600 leading-relaxed italic">
                                 "Subscribing to Quenzon Links saved me so much time every week. The tilapia and isombe bowls are fantastic!"
                             </p>
@@ -682,6 +833,121 @@
                 msg.classList.add('hidden');
             }, 1200);
         }
+        
+    <!-- 6. TESTIMONIALS SECTION -->
+<!-- ... existing code ... -->
+        // Initialize total calculation on load
+        window.addEventListener('DOMContentLoaded', updateTotalPrice);
+
+        // Dietary Menu Selection (Vegetarian vs Non-Vegetarian)
+        function selectDiet(dietType) {
+            document.getElementById('selected-diet').value = dietType;
+            document.getElementById('selected-diet-badge').innerText = dietType;
+
+            const btnVeg = document.getElementById('btn-veg');
+            const btnNonVeg = document.getElementById('btn-nonveg');
+            const menuTitle = document.getElementById('diet-menu-title');
+            const menuList = document.getElementById('diet-menu-list');
+
+            const vegDishes = [
+                'Isombe (Pounded Cassava Leaves) & Boiled Ibijumba',
+                'Musanze Yellow Beans, Agatogo & Steamed Rice',
+                'Nyabugogo Market Roasted Plantains & Groundnut Sauce',
+                'Chargrilled Avocado, Dodo Greens & Sorghum Pilaf'
+            ];
+
+            const nonVegDishes = [
+                'Gisenyi Grilled Tilapia, Isombe & Ibijumba',
+                'Charcoal Beef Brochettes, Mizuzu & Kachumbari',
+                'Akabenz-Style Spiced Pork & Roasted Potatoes',
+                'Slow-Braised Rwandan Beef Stew & Spiced Pilau'
+            ];
+
+            const renderDishes = (dishes) => dishes.map(dish => `
+                <label class="flex items-start gap-2.5 bg-[#181E1A] p-2.5 rounded border border-white/5 cursor-pointer hover:border-brand-gold/40 transition-colors">
+                    <input type="checkbox" name="menu_item" value="${dish}" checked class="accent-[#C5A059] rounded mt-0.5">
+                    <span>${dish}</span>
+                </label>
+            `).join('');
+
+            if (dietType === 'Vegetarian') {
+                btnVeg.classList.remove('border-white/10', 'bg-[#222924]');
+                btnVeg.classList.add('border-brand-gold', 'bg-brand-gold/10');
+                btnNonVeg.classList.remove('border-brand-gold', 'bg-brand-gold/10');
+                btnNonVeg.classList.add('border-white/10', 'bg-[#222924]');
+
+                menuTitle.textContent = 'Vegetarian Rotation — Customize Weekly Dishes';
+                menuList.innerHTML = renderDishes(vegDishes);
+            } else {
+                btnNonVeg.classList.remove('border-white/10', 'bg-[#222924]');
+                btnNonVeg.classList.add('border-brand-gold', 'bg-brand-gold/10');
+                btnVeg.classList.remove('border-brand-gold', 'bg-brand-gold/10');
+                btnVeg.classList.add('border-white/10', 'bg-[#222924]');
+
+                menuTitle.textContent = 'Non-Vegetarian Rotation — Customize Weekly Dishes';
+                menuList.innerHTML = renderDishes(nonVegDishes);
+            }
+        }
+
+        // Open Payment Modal with Dietary Menu & Order Summary
+        function handleSubscriptionSubmit() {
+            const planSelect = document.getElementById('plan-select');
+            const locSelect = document.getElementById('location-select');
+            const plan = planSelect.value;
+            const diet = document.getElementById('selected-diet').value;
+            const location = locSelect.value;
+            const deliveryFee = locSelect.options[locSelect.selectedIndex].getAttribute('data-fee');
+            const totalText = document.getElementById('calculated-total').innerText;
+            const name = document.getElementById('cust-name').value || 'Subscriber';
+
+            const checkedDishes = Array.from(document.querySelectorAll('input[name="menu_item"]:checked')).map(cb => cb.value);
+            const dishesSummary = checkedDishes.length > 0 ? checkedDishes.join(', ') : "Chef's Weekly Selection";
+
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('modal-plan').innerText = plan;
+            document.getElementById('modal-diet').innerText = diet + ' Menu';
+            document.getElementById('modal-dishes').innerText = dishesSummary;
+            document.getElementById('modal-location').innerText = `${location} (+${parseInt(deliveryFee).toLocaleString()} RWF)`;
+            document.getElementById('modal-total').innerText = totalText;
+
+            document.getElementById('payment-modal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.add('hidden');
+        }
+
+        // Confirm & Send Order with Dietary Menu to WhatsApp
+        function confirmWhatsAppPayment() {
+            const plan = document.getElementById('plan-select').value;
+            const diet = document.getElementById('selected-diet').value;
+            const dishes = document.getElementById('modal-dishes').innerText;
+            const locSelect = document.getElementById('location-select');
+            const location = locSelect.value;
+            const deliveryFee = locSelect.options[locSelect.selectedIndex].getAttribute('data-fee');
+            const totalText = document.getElementById('calculated-total').innerText;
+            const startDate = document.getElementById('start-date').value;
+            const name = document.getElementById('cust-name').value || 'Customer';
+            const phone = document.getElementById('cust-phone').value || '';
+
+            const text = encodeURIComponent(
+                `Hello Quenzon Links Rwanda Kitchen! I would like to confirm my meal subscription:\n\n` +
+                `- Name: ${name}\n` +
+                `- Phone: ${phone}\n` +
+                `- Plan: ${plan}\n` +
+                `- Dietary Menu: ${diet}\n` +
+                `- Selected Dishes: ${dishes}\n` +
+                `- Delivery Zone: ${location} (${parseInt(deliveryFee).toLocaleString()} RWF)\n` +
+                `- Start Date: ${startDate}\n` +
+                `- Total Due (MTN MoMo - MIZERO Chrispin): ${totalText}`
+            );
+
+            window.open(`https://wa.me/250781070676?text=${text}`, '_blank');
+            closePaymentModal();
+        }
+
+        // Newsletter Form Feedback
+<!-- ... existing code ... -->
 
         // Newsletter Form Feedback
         function handleNewsletter() {
