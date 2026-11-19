@@ -195,7 +195,7 @@
                         </div>
                         <div class="space-y-2">
                             <div class="w-10 h-10 rounded-full bg-amber-100/60 flex items-center justify-center text-brand-gold text-lg">
-                                <i class="fa-solid fa-[#C5A059] fa-box"></i>
+                                <i class="fa-solid fa-box"></i>
                             </div>
                             <h4 class="font-serif text-base font-semibold text-gray-900">Freshly Prepped</h4>
                             <p class="text-xs text-gray-500 leading-normal">Portioned, ready-to-eat meals using local ingredients.</p>
@@ -389,21 +389,21 @@
     
 
     <!-- 5. SUBSCRIPTION REGISTRATION SECTION -->
-  <div class="text-center max-w-2xl mx-auto mb-16">
+    <section id="subscribe" class="py-24 bg-brand-lightBg text-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center max-w-2xl mx-auto mb-16">
                 <span class="text-xs font-bold tracking-[0.25em] text-brand-accentText uppercase">Choose Your Meal</span>
                 <h2 class="font-serif text-3xl sm:text-5xl font-normal text-gray-900 mt-2">Be a part of your plate.</h2>
                 <p class="text-gray-500 text-sm mt-3">
                     Flexible weekly and monthly plans designed for professionals, families, and health-conscious individuals in Kigali.
                 </p>
             </div>
-     
-    
-<!-- ... existing code ... -->
-                    
-                </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                 <!-- Right Subscription Form -->
-                <div class="lg:col-span-6 mt-3 p-6">
+                <div class="lg:col-span-6 lg:col-start-4 mt-6 p-6">
                     <form id="subscription-form" onsubmit="event.preventDefault(); handleSubscriptionSubmit();" class="bg-[#181E1A]/90 border border-white/10 backdrop-blur-md rounded-lg p-6 sm:p-8 space-y-4 shadow-2xl">
                         
                         <!-- Plan Selection -->
@@ -477,7 +477,33 @@
                         </div>
 
                         <!-- Kigali Neighborhood with Specific Delivery Pricing -->
-<!-- ... existing code ... -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Full Name</label>
+                                <input id="cust-name" type="text" required placeholder="Your name" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Phone</label>
+                                <input id="cust-phone" type="tel" required placeholder="+250 7XX XXX XXX" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Kigali Neighborhood</label>
+                                <select id="location-select" onchange="updateTotalPrice()" class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                                    <option value="Kimihurura" data-fee="1200">Kimihurura — 1,200 RWF</option>
+                                    <option value="Kacyiru" data-fee="1500">Kacyiru — 1,500 RWF</option>
+                                    <option value="Remera" data-fee="2000">Remera — 2,000 RWF</option>
+                                    <option value="Nyamirambo" data-fee="2500">Nyamirambo — 2,500 RWF</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-bold tracking-widest text-gray-400">Start Date</label>
+                                <input id="start-date" type="date" required class="w-full bg-[#222924] border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                            </div>
+                        </div>
+
                         <!-- Estimated Total Breakdown -->
                         <div class="bg-[#1D2520] border border-white/5 rounded p-3 flex justify-between items-center text-xs text-gray-300 font-sans">
                             <span>Total (Plan + Delivery):</span>
@@ -638,6 +664,16 @@
                     </p>
                 </div>
 
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-white font-semibold tracking-wider text-xs uppercase">Weekly Menu Newsletter</h4>
+                    <p class="text-gray-500 text-[11px]">Get the upcoming weekly subscription menu delivered to your inbox every Sunday.</p>
+                    <form onsubmit="event.preventDefault(); handleNewsletter();" class="flex gap-2 pt-1">
+                        <input type="email" required placeholder="Your email address" class="bg-[#1F2722] border border-white/10 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-gold w-full">
+                        <button type="submit" class="px-4 py-2 bg-[#C5A059] text-gray-950 font-semibold text-xs rounded hover:bg-brand-goldHover transition-colors">Subscribe</button>
+                    </form>
+                    <p id="newsletter-msg" class="hidden text-[10px] text-brand-gold">Subscribed to weekly menu updates!</p>
+                </div>
+
                 <div class="md:col-span-2 space-y-3">
                     <h4 class="text-white font-semibold tracking-wider text-xs uppercase">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
@@ -655,7 +691,7 @@
                         <div class="flex space-x-3 text-base text-gray-400">
                             <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
                             <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="https://wa.me/+250781070676" target="_blank" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="https://wa.me/250781070676" target="_blank" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
                         </div>
                     </div>
                     <div class="space-y-1 text-gray-400">
@@ -746,9 +782,7 @@
                 msg.classList.add('hidden');
             }, 1200);
         }
-        
-    <!-- 6. TESTIMONIALS SECTION -->
-<!-- ... existing code ... -->
+
         // Initialize total calculation on load
         window.addEventListener('DOMContentLoaded', updateTotalPrice);
 
@@ -858,9 +892,6 @@
             window.open(`https://wa.me/250781070676?text=${text}`, '_blank');
             closePaymentModal();
         }
-
-        // Newsletter Form Feedback
-<!-- ... existing code ... -->
 
         // Newsletter Form Feedback
         function handleNewsletter() {
